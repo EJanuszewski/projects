@@ -1,0 +1,21 @@
+{
+  "name": "01-vuejs",
+  "homepage": "https://github.com/EJanuszewski/projects",
+  "authors": [
+    "Edward Januszewski <e.januszewski@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "vue": "^1.0.17"
+  }
+}

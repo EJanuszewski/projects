@@ -1,0 +1,19 @@
+<html>
+  <head>
+    <script src="/vuejs/bower_components/vue/dist/vue.js" charset="utf-8"></script>
+  </head>
+  <body>
+    <div id="app">
+        <input type="text" v-model="message" />
+      {{ $data | json }}
+    </div>
+    <script type="text/javascript">
+      new Vue({
+        el: '#app',
+        data: {
+          message: ''
+        }
+      })
+    </script>
+  </body>
+</html>
