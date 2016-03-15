@@ -30,7 +30,7 @@ Vue.component('tasks', {
       this.task = '';
     },
     editTask: function(task) {
-      task.editing = true;
+      Vue.set(task, 'editing', true);
     },
     saveTask: function(task) {
       task.editing = false;
@@ -43,13 +43,14 @@ Vue.component('tasks', {
     }
   }
 });
+Vue.config.debug = true;
 new Vue({
   el: '#app',
   data: {
     tasks: [
-      { body: 'Go to the store', completed: false, editing: false },
-      { body: 'Go to the bank', completed: false, editing: false },
-      { body: 'Go to the doctor', completed: false, editing: false }
+      { body: 'Go to the store', completed: false },
+      { body: 'Go to the bank', completed: false },
+      { body: 'Go to the doctor', completed: false }
     ]
   }
 });

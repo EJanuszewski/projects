@@ -15,7 +15,7 @@
           <span v-show="remaining">({{ remaining }})</span>
         </h1>
         <ul v-show="tasks.length">
-          <li v-for="task in tasks" :class=" { 'completed': task.completed }" @click="toggleCompleted(task)" @dblclick="editTask(task)">
+          <li v-for="task in tasks" :class=" { 'completed': task.completed }" @click="toggleCompleted(task) | debounce 200" @dblclick="editTask(task)">
             <input v-show="task.editing" v-model="task.body" @keyup.enter="saveTask(task)" />
             <span v-else>
               {{ task.body }}
@@ -25,7 +25,7 @@
         </ul>
         <p v-else>No tasks</p>
         <button @click="clearCompleted">Clear completed</button>
-        <input type="text" v-model="task" />
+        <input type="text" v-model="task" @keyup.enter="addTask(task)" />
         <button @click="addTask(task)">Add task</button>
       </template>
     </div>
