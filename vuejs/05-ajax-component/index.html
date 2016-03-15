@@ -1,0 +1,36 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <style type="text/css">
+      .completed {
+        text-decoration: line-through;
+      }
+    </style>
+    <div id="app">
+      <tasks></tasks>
+      <template id="tasks-template">
+        <h1>
+          Tasks
+          <span v-show="remaining">({{ remaining }})</span>
+        </h1>
+        <ul v-show="tasks.length">
+          <li v-for="task in tasks" :class=" { 'completed': task.completed }" @click="toggleCompleted(task) | debounce 200" @dblclick="editTask(task)">
+            <input v-show="task.editing" v-model="task.body" @keyup.enter="saveTask(task)" />
+            <span v-else>
+              {{ task.body }}
+            </span>
+            <strong @click="deleteTask(task)">x</strong>
+          </li>
+        </ul>
+        <p v-else>No tasks</p>
+        <button @click="clearCompleted">Clear completed</button>
+        <input type="text" v-model="task" @keyup.enter="addTask(task)" />
+        <button @click="addTask(task)">Add task</button>
+      </template>
+    </div>
+    <script src="/vuejs/bower_components/vue/dist/vue.js" charset="utf-8"></script>
+    <script src="/vuejs/bower_components/vue-resource/dist/vue-resource.js" charset="utf-8"></script>
+    <script src="main.js" charset="utf-8"></script>
+  </body>
+</html>
