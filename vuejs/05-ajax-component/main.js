@@ -14,7 +14,7 @@ Vue.component('tasks', {
       this.$http({ url: 'http://localhost:3001/tasks', method: 'GET' }).then(function(response) {
         this.tasks = response.data;
       }, function(error) {
-        
+
       })
     },
     toggleCompleted: function(task) {
@@ -28,15 +28,27 @@ Vue.component('tasks', {
       return !this.isCompleted(task);
     },
     deleteTask: function(task) {
-      this.tasks.$remove(task);
+      this.$http({ url: 'http://localhost:3001/tasks/' + task.id, method: 'DELETE' }).then(function(response) {
+        this.tasks.$remove(task);
+      }, function(error) {
+
+      })
     },
     clearCompleted: function() {
-      this.tasks = this.tasks.filter(this.inProgress);
+      for (var i = 0; i < this.tasks.length; i++) {
+        if (this.isCompleted(this.tasks[i])) {
+          this.deleteTask(this.tasks[i]);
+        }
+      }
     },
     addTask: function(task) {
-      if(task)
-        this.tasks.push({ body: task, completed: false });
-      this.task = '';
+      if(task) {
+        this.$http({ url: 'http://localhost:3001/tasks/', data: { body: task, completed: false }, method: 'POST' }).then(function(response) {
+          this.tasks.push(response.data);
+        }, function(error) {
+
+        })
+      }
     },
     editTask: function(task) {
       Vue.set(task, 'editing', true);
