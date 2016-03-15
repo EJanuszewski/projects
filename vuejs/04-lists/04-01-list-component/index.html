@@ -10,9 +10,23 @@
     <div id="app">
       <tasks :tasks="tasks"></tasks>
       <template id="tasks-template">
-        <ul>
-          <li v-for="task in tasks" :class=" { 'completed': task.completed }" @click="toggleCompleted(task)">{{ task.body }}</li>
+        <h1>
+          Tasks
+          <span v-show="remaining">({{ remaining }})</span>
+        </h1>
+        <ul v-show="tasks.length">
+          <li v-for="task in tasks" :class=" { 'completed': task.completed }" @click="toggleCompleted(task)" @dblclick="editTask(task)">
+            <input v-show="task.editing" v-model="task.body" @keyup.enter="saveTask(task)" />
+            <span v-else>
+              {{ task.body }}
+            </span>
+            <strong @click="deleteTask(task)">x</strong>
+          </li>
         </ul>
+        <p v-else>No tasks</p>
+        <button @click="clearCompleted">Clear completed</button>
+        <input type="text" v-model="task" />
+        <button @click="addTask(task)">Add task</button>
       </template>
     </div>
     <script src="/vuejs/bower_components/vue/dist/vue.js" charset="utf-8"></script>

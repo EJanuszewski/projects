@@ -4,11 +4,42 @@ Vue.component('tasks', {
   props: ['tasks'],
   data: function() {
     return {
+      task: ''
     }
   },
   methods: {
     toggleCompleted: function(task) {
-      task.completed = !task.completed;
+      if(!task.editing)
+        task.completed = !task.completed;
+    },
+    isCompleted: function(task) {
+      return task.completed;
+    },
+    inProgress: function(task) {
+      return !this.isCompleted(task);
+    },
+    deleteTask: function(task) {
+      this.tasks.$remove(task);
+    },
+    clearCompleted: function() {
+      this.tasks = this.tasks.filter(this.inProgress);
+    },
+    addTask: function(task) {
+      if(task)
+        this.tasks.push({ body: task, completed: false });
+      this.task = '';
+    },
+    editTask: function(task) {
+      task.editing = true;
+    },
+    saveTask: function(task) {
+      task.editing = false;
+    }
+  },
+  computed: {
+    remaining: function() {
+      var vm = this;
+      return this.tasks.filter(this.inProgress).length;
     }
   }
 });
@@ -16,9 +47,9 @@ new Vue({
   el: '#app',
   data: {
     tasks: [
-      { body: 'Go to the store', completed: false },
-      { body: 'Go to the bank', completed: false },
-      { body: 'Go to the doctor', completed: false }
+      { body: 'Go to the store', completed: false, editing: false },
+      { body: 'Go to the bank', completed: false, editing: false },
+      { body: 'Go to the doctor', completed: false, editing: false }
     ]
   }
 });
