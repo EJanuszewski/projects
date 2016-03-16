@@ -1,0 +1,21 @@
+<html>
+  <head>
+  </head>
+  <style type="text/css">
+    .fade-transition {
+      transition: all .5s ease;
+    }
+    .fade-enter, .fade-leave {
+      opacity: 0;
+    }
+  </style>
+  <body>
+    <div id="app">
+      <div v-show="show" transition="fade" class="animated">Hello World!</div>
+      <button @click="show = !show"></button>
+    </div>
+    <script src="/vuejs/bower_components/vue/dist/vue.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="/vuejs/bower_components/animate.css/animate.min.css" />
+    <script src="main.js" charset="utf-8"></script>
+  </body>
+</html>

@@ -17,6 +17,7 @@
   ],
   "dependencies": {
     "vue": "^1.0.17",
-    "vue-resource": "^0.7.0"
+    "vue-resource": "^0.7.0",
+    "animate.css": "^3.5.1"
   }
 }
