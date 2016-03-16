@@ -1,0 +1,59 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <style type="text/css">
+      .alert {
+        padding: 10px;
+        background: #ccc;
+        border: 1px solid rgba(0,0,0, .3);
+        border-radius: 3px;
+        margin-bottom: 10px;
+        position: relative;
+      }
+      .alert:after {
+        content: "";
+        display: block;
+        clear: both;
+      }
+      .alert--success {
+        background: green;
+        color: #fff;
+      }
+      .alert--error {
+        background: red;
+        color: #fff;
+      }
+      .alert__close {
+        float: right;
+        font-size: 20px;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+    </style>
+    <div id="app">
+
+      <alert>
+        General message
+      </alert>
+
+      <alert type="success">
+        <strong>Sucess!</strong>
+        Your account has been updated
+      </alert>
+      <alert type="error">
+        <strong>Error!</strong>
+        An error occurred
+      </alert>
+
+      <template id="alert-template">
+        <div :class="alertClass" v-show="show">
+          <slot></slot>
+          <span class="alert__close" @click="show = false">x</span>
+        </div>
+      </template>
+    </div>
+    <script src="/vuejs/bower_components/vue/dist/vue.js" charset="utf-8"></script>
+    <script src="main.js" charset="utf-8"></script>
+  </body>
+</html>

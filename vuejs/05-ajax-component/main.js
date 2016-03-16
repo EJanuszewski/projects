@@ -45,6 +45,7 @@ Vue.component('tasks', {
       if(task) {
         this.$http({ url: 'http://localhost:3001/tasks/', data: { body: task, completed: false }, method: 'POST' }).then(function(response) {
           this.tasks.push(response.data);
+          this.task = '';
         }, function(error) {
 
         })
