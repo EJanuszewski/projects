@@ -55,7 +55,11 @@ Vue.component('tasks', {
       Vue.set(task, 'editing', true);
     },
     saveTask: function(task) {
-      task.editing = false;
+      this.$http({ url: 'http://localhost:3001/tasks/' + task.id, data: { body: task.body }, method: 'PATCH' }).then(function(response) {
+        task.editing = false;
+      }, function(error) {
+
+      })
     }
   },
   computed: {
