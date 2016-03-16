@@ -1,3 +1,9 @@
+Vue.filter('role', function(value, role) {
+  return value.filter(function(item) {
+    return item.role == role
+  })
+})
+
 new Vue({
   el: '#app',
   data: {
