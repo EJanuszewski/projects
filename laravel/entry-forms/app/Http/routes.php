@@ -15,6 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/admin', function() {
+    $people = ['Taylor', 'Matt', 'Jeffrey'];
+    return view('pages.admin', compact('people'));
+});
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
