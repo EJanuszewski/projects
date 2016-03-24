@@ -9,6 +9,17 @@
                 <li class="list-group-item"><a href="/cards/{{ $card->id }}">{{ $card->title }}</a></li>
             @endforeach
             </ul>
+
+            <h3>Add New Card</h3>
+
+            <form method="POST" action="/cards">
+                <div class="form-group">
+                    <input name="title" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Add Note" class="btn btn-primary" />
+                </div>
+            </form>
         </div>
     </div>
 
