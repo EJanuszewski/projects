@@ -50,3 +50,9 @@ jspm_packages
 
 # Optional REPL history
 .node_repl_history
+
+# Android Studio captures folder
+captures/
+
+vendor
+.idea
