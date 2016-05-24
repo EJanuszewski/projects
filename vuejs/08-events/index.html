@@ -1,0 +1,14 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <div id="app">
+      <message @new-message="handleNewMessage"></message>
+      <ul>
+        <li v-for="message in messages">{{ message }}</li>
+      </ul>
+    </div>
+    <script src="/vuejs/bower_components/vue/dist/vue.js" charset="utf-8"></script>
+    <script src="main.js" charset="utf-8"></script>
+  </body>
+</html>
